@@ -5,26 +5,30 @@
   <title>Routingの基本 - Ember.js</title>
 </head>
 <body>
-<script type="text/x-handlebars">
-  <h1>Music PlayerNew</h1>
-  <p>Title: {{title}}</p>
-  <p>Artist: {{artist}}</p>
-  <p>Volume: {{soundVolume}}</p>
-</script>  <script type="text/javascript" src="js/libs/jquery-1.10.2.js"></script>
+    <script type="text/x-handlebars">
+  <h1>HTML event</h1>
+  <button onclick="javascript:console.debug('clicked!');">Click Me!</button>
+  <h1>jQuery</h1>
+  <button id="button">Click Me!</button>
+  <h1>Actions</h1>
+  <p><button {{action 'foo'}}>Click Me!</button></p>
+    </script>
+  <script type="text/javascript" src="js/libs/jquery-1.10.2.js"></script>
   <script type="text/javascript" src="js/libs/handlebars-v1.3.0.js"></script>
   <script type="text/javascript" src="js/libs/ember-1.8.1.js"></script>
   <script type="text/javascript">
 window.App = Ember.Application.create();
 App.ApplicationController = Ember.ObjectController.extend({
-      soundVolume: 6
+  actions: {
+    foo: function() {
+      console.debug('clicked!');
+    }
+  }
 });
-
-App.ApplicationRoute = Ember.Route.extend({
-  model: function() {
-    return {title: 'Brianstorm', artist: 'Arctic Monkeys'};
-}
-});
-
-</script>
+$(function() {
+  $('#button').on('click', function() {
+    console.debug('clicked!');
+  });
+});</script>
 </body>
 </html>
