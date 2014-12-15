@@ -6,24 +6,38 @@
 </head>
 <body>
     <script type="text/x-handlebars">
-  <h1>Actions</h1>
-  <p><button {{action 'countUp'}}>Count Up</button></p>
-  <p>Count: {{count}}</p>
-    </script>
+  <h1>Conditionals</h1>
+  {{#if expanded}}
+  <div>
+    <ol>
+      <li>Spring MVC</li>
+      <li>Grails</li>
+      <li>Ruby on Rails</li>
+    </ol>
+    <span style="background:#004;color:#FFF;padding:4px;" {{action 'collapse'}}>Close</span>
+  </div>
+  {{else}}
+  <div>
+    <span style="background:#008;color:#FFF;padding:4px;" {{action 'expand'}}>Show list</span>
+  </div>
+  {{/if}}
+  </script>
   <script type="text/javascript" src="js/libs/jquery-1.10.2.js"></script>
   <script type="text/javascript" src="js/libs/handlebars-v1.3.0.js"></script>
   <script type="text/javascript" src="js/libs/ember-1.8.1.js"></script>
   <script type="text/javascript">
-window.App = Ember.Application.create();
+  window.App = Ember.Application.create();
 App.ApplicationController = Ember.ObjectController.extend({
-  count: 1,
+  expanded: false,
   actions: {
-    countUp: function() {
-      var current = this.get('count');
-      this.set('count', current + 1);
+    expand: function() {
+      this.set('expanded', true);
+    },
+    collapse: function() {
+      this.set('expanded', false);
     }
   }
 });
-</script>
+    </script>
 </body>
 </html>
