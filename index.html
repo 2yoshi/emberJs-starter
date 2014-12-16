@@ -6,27 +6,39 @@
 </head>
 <body>
 <script type="text/x-handlebars">
+<h2 id="toc-view5">View</h2>
 <ul>
 {{#each model}}
-  <li>{{name}}({{color}})</li>
+<li>{{view App.MemberView}}</li>
 {{/each}}
 </ul>
-</script>  <script type="text/javascript" src="js/libs/jquery-1.10.2.js"></script>
+</script>
+<script type="text/x-handlebars" id="member">
+<span>{{name}}({{color}}) - {{view.count}}</span>
+</script> <script type="text/javascript" src="js/libs/jquery-1.10.2.js"></script>
   <script type="text/javascript" src="js/libs/handlebars-v1.3.0.js"></script>
   <script type="text/javascript" src="js/libs/ember-1.8.1.js"></script>
   <script type="text/javascript">
 window.App = Ember.Application.create();
 App.ApplicationRoute = Ember.Route.extend({
-  model: function(params) {
-    return [
-      {name: '百田夏菜子', color:'レッド' }, 
-      {name: '玉井詩織',  color:'イエロー' },
-      {name: '佐々木彩夏', color:'ピンク' },
-      {name: '有安杏果',  color:'グリーン' },
-      {name: '高城れに',  color:'パープル' },
-    ];
-  },
+    model: function(params) {
+    return [
+    {name: '百田夏菜子', color:'レッド' }, 
+    {name: '玉井詩織', color:'イエロー' },
+    {name: '佐々木彩夏', color:'ピンク' },
+    {name: '有安杏果', color:'グリーン' },
+    {name: '高城れに', color:'パープル' },
+    ];
+  },
 });
-    </script>
+App.MemberView = Ember.View.extend({
+  templateName: 'member',
+  count: 1,
+  click: function(evt) {
+  var current = this.get('count');
+  this.set('count', current + 1);
+}
+});
+</script>
 </body>
 </html>
